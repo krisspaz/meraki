@@ -6,7 +6,12 @@ import axios from 'axios';
 // 3. De lo contrario, usar la ruta relativa /api.
 let API_URL = (import.meta as any).env?.VITE_API_URL;
 
-if (!API_URL) {
+if (API_URL) {
+  // Si la variable de entorno está definida pero no termina en /api, se lo agregamos
+  if (!API_URL.endsWith('/api') && !API_URL.endsWith('/api/')) {
+    API_URL = API_URL.endsWith('/') ? API_URL + 'api' : API_URL + '/api';
+  }
+} else {
   if (typeof window !== 'undefined' && window.location.hostname.endsWith('.vercel.app')) {
     API_URL = 'https://vexatiously-dextrocular-esteban.ngrok-free.dev/api';
   } else {
