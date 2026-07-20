@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { LayoutDashboard, CalendarRange, Ticket, Users, LogOut, Loader2, Sparkles } from 'lucide-react';
+import { LayoutDashboard, CalendarRange, Ticket, Users, LogOut, Loader2 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
   const { user, loading, logout, isAuthenticated } = useAuth();
@@ -33,14 +33,13 @@ export const AdminLayout: React.FC = () => {
       <aside className="w-full md:w-64 bg-meraki-card border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-between shrink-0">
         <div>
           {/* Logo */}
-          <div className="p-6 border-b border-white/5 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-meraki-gradient flex items-center justify-center shadow-lg shadow-meraki-purple/20">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <span className="font-display font-bold tracking-wider text-sm block">PANEL ADMIN</span>
-              <span className="text-[9px] uppercase tracking-widest text-meraki-accent font-semibold block leading-none">Expo 360 Meraki</span>
-            </div>
+          <div className="p-5 border-b border-white/5 flex items-center justify-between">
+            <img 
+              src="/logo-1.png" 
+              alt="Expo 360 Meraki Logo" 
+              className="h-9 w-auto object-contain filter drop-shadow-[0_2px_10px_rgba(219,184,255,0.3)]" 
+            />
+            <span className="text-[10px] uppercase tracking-widest text-[#DBB8FF] font-black bg-[#3939FF]/20 px-2 py-0.5 rounded-full border border-[#3939FF]/30">ADMIN</span>
           </div>
 
           {/* Menú de navegación */}

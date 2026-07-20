@@ -12,16 +12,12 @@ export const PublicLayout: React.FC = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-50 glass-panel border-b border-[#DBB8FF]/20 py-4 px-6 md:px-12 flex justify-between items-center shadow-lg">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="relative w-12 h-12 rounded-2xl overflow-hidden bg-meraki-gradient p-[2px] flex items-center justify-center shadow-lg shadow-[#3939FF]/30 group-hover:scale-105 transition-transform duration-300">
-            <div className="w-full h-full bg-[#120E29] rounded-[14px] p-1.5 flex items-center justify-center">
-              <img src="/logo-1.png" alt="Meraki Logo" className="w-full h-full object-contain" />
-            </div>
-          </div>
-          <div>
-            <span className="font-display font-black text-xl tracking-wider text-white">MERAKI</span>
-            <span className="block text-[10px] uppercase tracking-widest text-[#AEE6ED] font-bold leading-none">EXPO 360</span>
-          </div>
+        <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-105">
+          <img 
+            src="/logo-1.png" 
+            alt="Expo 360 Meraki Logo" 
+            className="h-10 md:h-12 w-auto object-contain filter drop-shadow-[0_2px_12px_rgba(219,184,255,0.4)]" 
+          />
         </Link>
         
         <div className="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-300 bg-[#1A1638]/80 py-1.5 px-3.5 rounded-full border border-[#DBB8FF]/20 shadow-sm">

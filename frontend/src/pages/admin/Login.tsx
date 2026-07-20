@@ -33,13 +33,12 @@ export const Login: React.FC = () => {
       <div className="glass-panel p-8 md:p-10 rounded-[2rem] border border-[#DBB8FF]/20 max-w-md w-full relative z-10 space-y-8 shadow-2xl bg-[#1A1638]/90">
         {/* Logo and title */}
         <div className="text-center space-y-3">
-          <div className="w-14 h-14 rounded-2xl bg-meraki-gradient p-[2px] mx-auto shadow-lg shadow-[#3939FF]/30">
-            <div className="w-full h-full bg-[#120E29] rounded-[14px] p-2 flex items-center justify-center">
-              <img src="/logo-1.png" alt="Meraki Logo" className="w-full h-full object-contain" />
-            </div>
-          </div>
-          <div className="space-y-1">
-            <h2 className="font-display font-black text-2xl tracking-tight text-white uppercase">Expo 360 Meraki</h2>
+          <img 
+            src="/logo-1.png" 
+            alt="Expo 360 Meraki Logo" 
+            className="h-16 md:h-20 w-auto object-contain mx-auto filter drop-shadow-[0_4px_20px_rgba(219,184,255,0.4)]" 
+          />
+          <div className="space-y-1 pt-1">
             <span className="text-[10px] uppercase tracking-widest text-[#AEE6ED] font-black block leading-none">Panel Administrativo</span>
           </div>
         </div>
