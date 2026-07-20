@@ -21,9 +21,19 @@ export const api = axios.create({
   },
 });
 
-// Interceptor de Peticiones: Adjuntar token JWT
+// Interceptor de Peticiones: Adjuntar token JWT y resolver la URL de forma robusta
 api.interceptors.request.use(
   (config) => {
+    // Resolver de forma robusta la unión de baseURL y url si el path empieza con '/'
+    if (config.baseURL && config.url && config.url.startsWith('/')) {
+      const base = config.baseURL;
+      if (base.endsWith('/api') || base.endsWith('/api/')) {
+        const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+        config.url = cleanBase + config.url;
+        config.baseURL = ''; // Evitar que Axios vuelva a concatenar
+      }
+    }
+
     const token = localStorage.getItem('meraki_access_token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
