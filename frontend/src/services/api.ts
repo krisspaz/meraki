@@ -1,7 +1,18 @@
 import axios from 'axios';
 
-// Usar VITE_API_URL si está definido (para despliegues como Vercel), de lo contrario usar /api relativo.
-const API_URL = (import.meta as any).env?.VITE_API_URL || '/api';
+// Configurar el URL de la API:
+// 1. Usar VITE_API_URL si está definido (para despliegues en producción).
+// 2. Si estamos en Vercel (u otro host remoto) y no se definió VITE_API_URL, redirigir al backend local en puerto 8000.
+// 3. De lo contrario, usar la ruta relativa /api.
+let API_URL = (import.meta as any).env?.VITE_API_URL;
+
+if (!API_URL) {
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    API_URL = 'http://localhost:8000/api';
+  } else {
+    API_URL = '/api';
+  }
+}
 
 export const api = axios.create({
   baseURL: API_URL,
