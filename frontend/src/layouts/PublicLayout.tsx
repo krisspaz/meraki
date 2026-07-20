@@ -38,7 +38,11 @@ export const PublicLayout: React.FC = () => {
       <footer className="relative z-10 glass-panel border-t border-white/5 py-8 px-6 md:px-12 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
           <p className="font-medium text-slate-400">&copy; {new Date().getFullYear()} Expo 360 Meraki</p>
-          <p className="text-xs text-slate-500 mt-1">Organizado por estudiantes de la Carrera de Diseño Gráfico</p>
+          <p className="text-xs text-slate-500 mt-1">
+            <Link to="/admin/login" className="hover:text-meraki-accent transition-colors duration-200 cursor-pointer">
+              Organizado por estudiantes de la Carrera de Diseño Gráfico
+            </Link>
+          </p>
         </div>
         
         <a 
