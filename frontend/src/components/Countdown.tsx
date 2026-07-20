@@ -43,9 +43,9 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDateStr, onExpiry })
 
   if (timeLeft.isExpired) {
     return (
-      <div className="flex items-center justify-center gap-2 text-rose-400 bg-rose-500/10 py-3 px-6 rounded-2xl border border-rose-500/20 max-w-md mx-auto">
+      <div className="flex items-center justify-center gap-2 text-rose-700 bg-rose-50 py-3 px-6 rounded-2xl border border-rose-200 max-w-md mx-auto">
         <Clock className="w-5 h-5" />
-        <span className="font-semibold text-sm">El período de registro ha finalizado.</span>
+        <span className="font-bold text-sm">El período de registro ha finalizado.</span>
       </div>
     );
   }
@@ -59,20 +59,20 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDateStr, onExpiry })
 
   return (
     <div className="text-center space-y-4">
-      <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold flex items-center justify-center gap-2">
-        <Clock className="w-4 h-4 text-meraki-accent animate-pulse" />
+      <p className="text-xs uppercase tracking-widest text-slate-600 font-extrabold flex items-center justify-center gap-2">
+        <Clock className="w-4 h-4 text-[#FF5B22] animate-pulse" />
         <span>Inscripciones cierran en</span>
       </p>
       
       <div className="flex justify-center gap-3 md:gap-4">
         {timeUnits.map((unit) => (
           <div key={unit.label} className="flex flex-col items-center">
-            <div className="w-16 h-16 md:w-20 md:h-20 glass-panel rounded-2xl flex items-center justify-center border border-white/10 shadow-lg shadow-black/35">
-              <span className="text-xl md:text-2xl font-bold font-display text-gradient">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl flex items-center justify-center border border-slate-200 shadow-md">
+              <span className="text-xl md:text-2xl font-black font-display text-meraki-blue">
                 {unit.value.toString().padStart(2, '0')}
               </span>
             </div>
-            <span className="text-[10px] uppercase tracking-wider text-slate-400 mt-2 font-medium">
+            <span className="text-[10px] uppercase tracking-wider text-slate-600 mt-2 font-bold">
               {unit.label}
             </span>
           </div>

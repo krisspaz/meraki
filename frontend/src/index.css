@@ -4,11 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-meraki-darker text-slate-100 overflow-x-hidden font-sans;
+    @apply bg-meraki-light text-slate-800 overflow-x-hidden font-sans;
     background-image: 
-      radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.08) 0%, transparent 40%),
-      linear-gradient(to bottom, #0B0B10, #06060A);
+      radial-gradient(circle at 10% 15%, rgba(174, 230, 237, 0.5) 0%, transparent 40%),
+      radial-gradient(circle at 90% 25%, rgba(219, 184, 255, 0.5) 0%, transparent 45%),
+      radial-gradient(circle at 50% 85%, rgba(255, 91, 34, 0.12) 0%, transparent 50%),
+      linear-gradient(180deg, #F8F9FE 0%, #EEF2FF 100%);
     background-attachment: fixed;
   }
 }
@@ -19,50 +20,52 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0B10;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1C1C34;
+  background: #DBB8FF;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7C3AED;
+  background: #3939FF;
 }
 
-/* Efectos de Cristal (Glassmorphism) */
+/* Efectos de Cristal para Tema Claro Vibrante */
 .glass-panel {
-  background: rgba(20, 20, 36, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(57, 57, 255, 0.12);
+  box-shadow: 0 20px 40px -15px rgba(57, 57, 255, 0.08);
 }
 
 .glass-card {
-  background: rgba(20, 20, 36, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(219, 184, 255, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(57, 57, 255, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(28, 28, 52, 0.6);
-  border-color: rgba(124, 58, 237, 0.25);
-  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.2);
+  background: #FFFFFF;
+  border-color: rgba(57, 57, 255, 0.45);
+  box-shadow: 0 20px 35px -10px rgba(57, 57, 255, 0.15);
   transform: translateY(-4px);
 }
 
-/* Inputs de Cristal */
+/* Inputs de Cristal Claro */
 .glass-input {
-  background: rgba(10, 10, 15, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  @apply rounded-lg py-2 px-3 text-white placeholder-slate-500 focus:outline-none focus:border-meraki-purple focus:ring-1 focus:ring-meraki-purple transition-all duration-200;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  @apply rounded-xl py-2.5 px-3.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-meraki-blue focus:ring-2 focus:ring-meraki-blue/20 transition-all duration-200;
 }
 
-/* Botón Meraki Degradado */
+/* Botón Meraki Degradado Vibrante */
 .btn-meraki {
-  @apply relative overflow-hidden text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-300 transform active:scale-95 shadow-lg shadow-meraki-purple/20 hover:shadow-meraki-purple/40;
-  background: linear-gradient(135deg, #7C3AED 0%, #D946EF 50%, #F43F5E 100%);
+  @apply relative overflow-hidden text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform active:scale-95 shadow-lg shadow-meraki-blue/25 hover:shadow-meraki-blue/40;
+  background: linear-gradient(135deg, #3939FF 0%, #7C3AED 50%, #FF5B22 100%);
   background-size: 200% auto;
 }
 
@@ -73,23 +76,24 @@
 
 .btn-meraki:disabled {
   @apply opacity-50 cursor-not-allowed transform-none shadow-none;
-  background: #1C1C34;
+  background: #CBD5E1;
 }
 
 /* Badges de Disponibilidad */
 .badge-available {
-  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full text-xs font-semibold;
+  @apply bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold;
 }
 .badge-almost {
-  @apply bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full text-xs font-semibold;
+  @apply bg-amber-100 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded-full text-xs font-bold;
 }
 .badge-full {
-  @apply bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded-full text-xs font-semibold;
+  @apply bg-rose-100 text-rose-800 border border-rose-300 px-2.5 py-0.5 rounded-full text-xs font-bold;
 }
 
 /* Texto Degradado Artístico */
 .text-gradient {
-  background: linear-gradient(135deg, #A78BFA 0%, #F472B6 50%, #FB7185 100%);
+  background: linear-gradient(135deg, #3939FF 0%, #FF5B22 50%, #F2BB05 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
