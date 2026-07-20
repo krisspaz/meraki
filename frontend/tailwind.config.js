@@ -16,17 +16,17 @@ export default {
           black: '#000000',
           white: '#FFFFFF',
           
-          // Mapeos de compatibilidad con la nueva paleta clara e iluminada
-          dark: '#1E1B2E',
-          darker: '#F8F9FE',
-          card: '#FFFFFF',
-          cardHover: '#F1F3FD',
+          // Tema Violeta/Índigo Profundo Iluminado (No negro plano, no blanco plano)
+          dark: '#1A1638',
+          darker: '#120E29',
+          card: '#1E1945',
+          cardHover: '#272156',
           fuchsia: '#DBB8FF',
           pink: '#FF5B22',
           coral: '#FF5B22',
-          accent: '#3939FF',
+          accent: '#DBB8FF',
           light: '#F8F9FE',
-          muted: '#64748B'
+          muted: '#94A3B8'
         }
       },
       fontFamily: {
@@ -34,12 +34,12 @@ export default {
         display: ['Outfit', 'sans-serif'],
       },
       backgroundImage: {
-        'meraki-gradient': 'linear-gradient(135deg, #3939FF 0%, #DBB8FF 50%, #FF5B22 100%)',
+        'meraki-gradient': 'linear-gradient(135deg, #FF5B22 0%, #3939FF 50%, #DBB8FF 100%)',
         'meraki-grad-orange': 'linear-gradient(135deg, #FF5B22 0%, #F2BB05 100%)',
         'meraki-grad-celeste': 'linear-gradient(135deg, #3939FF 0%, #AEE6ED 100%)',
         'meraki-grad-purple': 'linear-gradient(135deg, #3939FF 0%, #DBB8FF 100%)',
-        'meraki-light-grad': 'linear-gradient(180deg, #F8F9FE 0%, #EEF2FF 100%)',
-        'meraki-glow': 'radial-gradient(circle at 50% 50%, rgba(219, 184, 255, 0.35) 0%, transparent 70%)',
+        'meraki-bg-grad': 'linear-gradient(180deg, #181335 0%, #100C24 100%)',
+        'meraki-glow': 'radial-gradient(circle at 50% 50%, rgba(219, 184, 255, 0.2) 0%, transparent 70%)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',

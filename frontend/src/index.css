@@ -4,12 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-meraki-light text-slate-800 overflow-x-hidden font-sans;
+    @apply bg-[#120E29] text-slate-100 overflow-x-hidden font-sans;
     background-image: 
-      radial-gradient(circle at 10% 15%, rgba(174, 230, 237, 0.5) 0%, transparent 40%),
-      radial-gradient(circle at 90% 25%, rgba(219, 184, 255, 0.5) 0%, transparent 45%),
-      radial-gradient(circle at 50% 85%, rgba(255, 91, 34, 0.12) 0%, transparent 50%),
-      linear-gradient(180deg, #F8F9FE 0%, #EEF2FF 100%);
+      radial-gradient(circle at 15% 15%, rgba(57, 57, 255, 0.25) 0%, transparent 45%),
+      radial-gradient(circle at 85% 25%, rgba(219, 184, 255, 0.25) 0%, transparent 45%),
+      radial-gradient(circle at 50% 85%, rgba(255, 91, 34, 0.15) 0%, transparent 50%),
+      linear-gradient(180deg, #181335 0%, #100C24 100%);
     background-attachment: fixed;
   }
 }
@@ -20,52 +20,52 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #100C24;
 }
 ::-webkit-scrollbar-thumb {
-  background: #DBB8FF;
+  background: #272156;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3939FF;
+  background: #DBB8FF;
 }
 
-/* Efectos de Cristal para Tema Claro Vibrante */
+/* Efectos de Cristal para Tema Violeta/Índigo Profundo */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(30, 25, 69, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(57, 57, 255, 0.12);
-  box-shadow: 0 20px 40px -15px rgba(57, 57, 255, 0.08);
+  border: 1px solid rgba(219, 184, 255, 0.2);
+  box-shadow: 0 20px 50px -10px rgba(18, 14, 41, 0.5);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(219, 184, 255, 0.4);
-  box-shadow: 0 10px 25px -5px rgba(57, 57, 255, 0.05);
+  background: rgba(30, 25, 69, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(219, 184, 255, 0.15);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: #FFFFFF;
-  border-color: rgba(57, 57, 255, 0.45);
-  box-shadow: 0 20px 35px -10px rgba(57, 57, 255, 0.15);
+  background: rgba(39, 33, 86, 0.7);
+  border-color: rgba(219, 184, 255, 0.45);
+  box-shadow: 0 20px 40px -10px rgba(57, 57, 255, 0.25);
   transform: translateY(-4px);
 }
 
-/* Inputs de Cristal Claro */
+/* Inputs de Cristal Violeta */
 .glass-input {
-  background: #FFFFFF;
-  border: 1.5px solid #E2E8F0;
-  @apply rounded-xl py-2.5 px-3.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-meraki-blue focus:ring-2 focus:ring-meraki-blue/20 transition-all duration-200;
+  background: rgba(18, 14, 41, 0.6);
+  border: 1px solid rgba(219, 184, 255, 0.25);
+  @apply rounded-xl py-2.5 px-3.5 text-white placeholder-slate-400 focus:outline-none focus:border-[#DBB8FF] focus:ring-2 focus:ring-[#DBB8FF]/30 transition-all duration-200;
 }
 
-/* Botón Meraki Degradado Vibrante */
+/* Botón Meraki Degradado Naranja-Azul-Morado */
 .btn-meraki {
-  @apply relative overflow-hidden text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform active:scale-95 shadow-lg shadow-meraki-blue/25 hover:shadow-meraki-blue/40;
-  background: linear-gradient(135deg, #3939FF 0%, #7C3AED 50%, #FF5B22 100%);
+  @apply relative overflow-hidden text-white font-extrabold py-3 px-6 rounded-xl transition-all duration-300 transform active:scale-95 shadow-lg shadow-[#FF5B22]/20 hover:shadow-[#3939FF]/40;
+  background: linear-gradient(135deg, #FF5B22 0%, #3939FF 50%, #7C3AED 100%);
   background-size: 200% auto;
 }
 
@@ -76,23 +76,23 @@
 
 .btn-meraki:disabled {
   @apply opacity-50 cursor-not-allowed transform-none shadow-none;
-  background: #CBD5E1;
+  background: #272156;
 }
 
 /* Badges de Disponibilidad */
 .badge-available {
-  @apply bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold;
+  @apply bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full text-xs font-bold;
 }
 .badge-almost {
-  @apply bg-amber-100 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded-full text-xs font-bold;
+  @apply bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-0.5 rounded-full text-xs font-bold;
 }
 .badge-full {
-  @apply bg-rose-100 text-rose-800 border border-rose-300 px-2.5 py-0.5 rounded-full text-xs font-bold;
+  @apply bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2.5 py-0.5 rounded-full text-xs font-bold;
 }
 
 /* Texto Degradado Artístico */
 .text-gradient {
-  background: linear-gradient(135deg, #3939FF 0%, #FF5B22 50%, #F2BB05 100%);
+  background: linear-gradient(135deg, #DBB8FF 0%, #AEE6ED 50%, #FF5B22 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -42,18 +42,18 @@ export const WorkshopCard: React.FC<WorkshopCardProps> = ({
     <div 
       className={`glass-card p-6 rounded-3xl flex flex-col justify-between relative overflow-hidden transition-all duration-300 ${
         isSelected 
-          ? 'ring-2 ring-meraki-blue shadow-xl shadow-meraki-blue/15 translate-y-[-4px] bg-white' 
-          : 'bg-white/90'
+          ? 'ring-2 ring-[#DBB8FF] shadow-xl shadow-[#3939FF]/30 translate-y-[-4px] bg-[#1E1945]/90' 
+          : 'bg-[#1E1945]/60'
       } ${isFullOrClosed ? 'opacity-75' : ''}`}
     >
       {/* Glow para tarjetas seleccionadas */}
       {isSelected && (
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#DBB8FF]/30 rounded-full blur-[40px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#3939FF]/30 rounded-full blur-[40px] pointer-events-none" />
       )}
 
       <div className="space-y-4 relative z-10">
         {/* Imagen del taller */}
-        <div className="aspect-[16/9] w-full rounded-2xl bg-slate-100 relative overflow-hidden border border-slate-200 shadow-inner">
+        <div className="aspect-[16/9] w-full rounded-2xl bg-[#120E29]/80 relative overflow-hidden border border-[#DBB8FF]/20 shadow-inner">
           {workshop.image_url ? (
             <img 
               src={workshop.image_url} 
@@ -65,18 +65,18 @@ export const WorkshopCard: React.FC<WorkshopCardProps> = ({
               EXPO 360
             </div>
           )}
-          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 shadow-md">
+          <div className="absolute top-3 left-3 bg-[#120E29]/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#DBB8FF]/20 shadow-md">
             {getStatusBadge()}
           </div>
         </div>
 
         {/* Detalles Taller */}
         <div>
-          <h3 className="font-display font-black text-lg text-slate-900 leading-snug">{workshop.name}</h3>
+          <h3 className="font-display font-black text-lg text-white leading-snug">{workshop.name}</h3>
           
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3 text-xs font-medium text-slate-600">
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3 text-xs font-medium text-slate-300">
             <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-meraki-blue" />
+              <Clock className="w-3.5 h-3.5 text-[#AEE6ED]" />
               <span>{formatTime(workshop.start_time)} - {formatTime(workshop.end_time)}</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -85,26 +85,26 @@ export const WorkshopCard: React.FC<WorkshopCardProps> = ({
             </div>
           </div>
 
-          <p className="text-xs text-slate-600 mt-3 line-clamp-3 leading-relaxed font-normal">{workshop.description}</p>
+          <p className="text-xs text-slate-300 mt-3 line-clamp-3 leading-relaxed font-normal">{workshop.description}</p>
         </div>
 
         {/* Expositor */}
-        <div className="bg-slate-50 rounded-2xl p-3 border border-slate-200 flex gap-3 items-center">
-          <div className="w-10 h-10 rounded-xl bg-meraki-blue/10 border border-meraki-blue/20 flex items-center justify-center shrink-0">
-            <User2 className="w-5 h-5 text-meraki-blue" />
+        <div className="bg-[#120E29]/70 rounded-2xl p-3 border border-[#DBB8FF]/15 flex gap-3 items-center">
+          <div className="w-10 h-10 rounded-xl bg-[#3939FF]/20 border border-[#3939FF]/40 flex items-center justify-center shrink-0">
+            <User2 className="w-5 h-5 text-[#DBB8FF]" />
           </div>
           <div className="min-w-0">
-            <span className="block text-xs font-bold text-slate-900 leading-tight truncate">{workshop.speaker_name}</span>
-            <span className="block text-[10px] font-medium text-slate-500 truncate mt-0.5">{workshop.speaker_bio}</span>
+            <span className="block text-xs font-bold text-white leading-tight truncate">{workshop.speaker_name}</span>
+            <span className="block text-[10px] font-medium text-slate-400 truncate mt-0.5">{workshop.speaker_bio}</span>
           </div>
         </div>
       </div>
 
       <div className="mt-6 space-y-4 relative z-10">
         {/* Cupos disponibles */}
-        <div className="flex justify-between items-center text-xs border-t border-slate-200 pt-3.5 font-semibold">
-          <span className="text-slate-600">Cupos disponibles:</span>
-          <span className={`font-bold font-display text-sm ${isFullOrClosed ? 'text-rose-600' : 'text-emerald-700'}`}>
+        <div className="flex justify-between items-center text-xs border-t border-white/10 pt-3.5 font-semibold">
+          <span className="text-slate-400">Cupos disponibles:</span>
+          <span className={`font-bold font-display text-sm ${isFullOrClosed ? 'text-rose-400' : 'text-emerald-400'}`}>
             {isFullOrClosed ? '0 cupos' : `${workshop.slots_available} / ${workshop.capacity}`}
           </span>
         </div>
@@ -117,10 +117,10 @@ export const WorkshopCard: React.FC<WorkshopCardProps> = ({
             onClick={() => onSelect(workshop.id)}
             className={`w-full py-3 px-4 rounded-xl text-xs font-extrabold transition-all duration-200 flex items-center justify-center gap-2 ${
               isSelected
-                ? 'bg-meraki-blue text-white shadow-md shadow-meraki-blue/30'
+                ? 'bg-meraki-gradient text-white shadow-lg shadow-[#FF5B22]/30'
                 : isFullOrClosed
-                ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                : 'bg-slate-100 hover:bg-[#DBB8FF]/30 text-slate-800 border border-slate-300 hover:border-meraki-blue shadow-xs'
+                ? 'bg-white/5 text-slate-500 border border-white/5 cursor-not-allowed'
+                : 'bg-[#120E29]/80 hover:bg-[#3939FF]/30 text-white border border-[#DBB8FF]/20 hover:border-[#DBB8FF]'
             }`}
           >
             {isSelected && <CheckCircle2 className="w-4 h-4 text-white" />}
