@@ -4,18 +4,29 @@ import axios from 'axios';
 // 1. Usar VITE_API_URL si está definido (para despliegues en producción).
 // 2. Si estamos en Vercel (u otro host remoto) y no se definió VITE_API_URL, redirigir al backend local en puerto 8000.
 // 3. De lo contrario, usar la ruta relativa /api.
-let API_URL = (import.meta as any).env?.VITE_API_URL;
+let API_URL = import.meta.env.VITE_API_URL;
 
-if (API_URL) {
-  // Si la variable de entorno está definida pero no termina en /api, se lo agregamos
+// Detección dinámica según el host del navegador para soportar túneles y Vercel
+if (typeof window !== 'undefined') {
+  const hostname = window.location.hostname;
+  
+  if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+    if (hostname.endsWith('.vercel.app')) {
+      // En Vercel usamos la URL pública de ngrok que apunta al backend
+      API_URL = 'https://vexatiously-dextrocular-esteban.ngrok-free.dev/api';
+    } else {
+      // En ngrok o redes locales, forzamos /api relativo para usar el proxy de Vite
+      API_URL = '/api';
+    }
+  }
+}
+
+if (!API_URL) {
+  API_URL = '/api';
+} else {
+  // Asegurarnos de que termine en /api
   if (!API_URL.endsWith('/api') && !API_URL.endsWith('/api/')) {
     API_URL = API_URL.endsWith('/') ? API_URL + 'api' : API_URL + '/api';
-  }
-} else {
-  if (typeof window !== 'undefined' && window.location.hostname.endsWith('.vercel.app')) {
-    API_URL = 'https://vexatiously-dextrocular-esteban.ngrok-free.dev/api';
-  } else {
-    API_URL = '/api';
   }
 }
 
