@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Usar /api relativo que funciona tanto en desarrollo (proxy de Vite) como en producción (proxy de Nginx)
-const API_URL = '/api';
+// Usar VITE_API_URL si está definido (para despliegues como Vercel), de lo contrario usar /api relativo.
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 export const api = axios.create({
   baseURL: API_URL,
