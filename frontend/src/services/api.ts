@@ -24,14 +24,11 @@ export const api = axios.create({
 // Interceptor de Peticiones: Adjuntar token JWT y resolver la URL de forma robusta
 api.interceptors.request.use(
   (config) => {
-    // Resolver de forma robusta la unión de baseURL y url si el path empieza con '/'
-    if (config.baseURL && config.url && config.url.startsWith('/')) {
-      const base = config.baseURL;
-      if (base.endsWith('/api') || base.endsWith('/api/')) {
-        const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
-        config.url = cleanBase + config.url;
-        config.baseURL = ''; // Evitar que Axios vuelva a concatenar
-      }
+    // Si la URL es relativa y no empieza con /api, le anteponemos el API_URL correcto
+    if (config.url && !config.url.startsWith('http') && !config.url.startsWith('/api')) {
+      const path = config.url.startsWith('/') ? config.url : '/' + config.url;
+      config.url = API_URL + path;
+      config.baseURL = ''; // Evitar que Axios intente concatenar de nuevo
     }
 
     const token = localStorage.getItem('meraki_access_token');
