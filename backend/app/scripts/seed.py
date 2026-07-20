@@ -95,7 +95,7 @@ async def seed_data():
                     "los objetivos y los materiales del taller serán actualizados próximamente por la organización. "
                     "¡Reserva tu espacio!"
                 ),
-                image_url="/colores.png",
+                image_url="/workshop-1.jpg",
                 speaker_name="Expositor pendiente",
                 speaker_bio="Biografía pendiente de confirmar. La información sobre la trayectoria del expositor estará disponible pronto.",
                 start_time=datetime.time(10, 30, 0),
@@ -112,7 +112,7 @@ async def seed_data():
                     "los objetivos y los materiales del taller serán actualizados próximamente por la organización. "
                     "¡Reserva tu espacio!"
                 ),
-                image_url="/colores.png",
+                image_url="/workshop-2.jpg",
                 speaker_name="Expositor pendiente",
                 speaker_bio="Biografía pendiente de confirmar. La información sobre la trayectoria del expositor estará disponible pronto.",
                 start_time=datetime.time(14, 0, 0),

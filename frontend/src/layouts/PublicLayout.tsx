@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { Mail, Sparkles } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 export const PublicLayout: React.FC = () => {
   return (
@@ -13,9 +13,9 @@ export const PublicLayout: React.FC = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 glass-panel border-b border-[#DBB8FF]/20 py-4 px-6 md:px-12 flex justify-between items-center shadow-lg">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-meraki-gradient p-[2px] flex items-center justify-center shadow-md shadow-[#3939FF]/30 group-hover:scale-105 transition-transform duration-300">
-            <div className="w-full h-full bg-[#120E29] rounded-[9px] flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-[#DBB8FF]" />
+          <div className="relative w-12 h-12 rounded-2xl overflow-hidden bg-meraki-gradient p-[2px] flex items-center justify-center shadow-lg shadow-[#3939FF]/30 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-full h-full bg-[#120E29] rounded-[14px] p-1.5 flex items-center justify-center">
+              <img src="/logo-1.png" alt="Meraki Logo" className="w-full h-full object-contain" />
             </div>
           </div>
           <div>
