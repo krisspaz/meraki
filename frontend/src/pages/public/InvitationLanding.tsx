@@ -43,7 +43,6 @@ export const InvitationLanding: React.FC = () => {
   // Manejar errores de invitación inválida, vencida o deshabilitada
   if (invError || !invitation) {
     const errData = (invError as any)?.response?.data?.detail;
-    const errCode = errData?.code || 'INVITATION_INVALID';
     const errMessage = errData?.message || 'Esta invitación no es válida o no existe.';
 
     return (

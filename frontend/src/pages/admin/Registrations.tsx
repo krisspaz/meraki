@@ -7,10 +7,9 @@ import {
   useUpdateRegistrationMutation
 } from '../../services/queries';
 import { formatDateTime } from '../../utils/formatters';
-import { api } from '../../services/api';
 import { 
   Loader2, Search, CheckSquare, XCircle, ArrowLeftRight, 
-  Download, Filter, AlertCircle, X, HelpCircle, Save 
+  Download, Filter, AlertCircle, X 
 } from 'lucide-react';
 
 export const Registrations: React.FC = () => {
@@ -72,7 +71,7 @@ export const Registrations: React.FC = () => {
     });
   };
 
-  const handleCancelRegistration = (id: number, code: string) => {
+  const handleCancelRegistration = (id: number) => {
     const reason = window.prompt('Ingrese el motivo de la cancelación de este registro:');
     if (reason === null) return; // cancelado por el administrador
 
@@ -279,7 +278,7 @@ export const Registrations: React.FC = () => {
                           <button
                             type="button"
                             disabled={!canCancel}
-                            onClick={() => handleCancelRegistration(reg.id, reg.code)}
+                            onClick={() => handleCancelRegistration(reg.id)}
                             className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                             title="Cancelar inscripción"
                           >

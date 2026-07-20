@@ -57,7 +57,7 @@ export const useRegisterMutation = () => {
       const response = await api.post('/public/registrations', data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       // Invalidar talleres para refrescar los cupos disponibles de inmediato
       queryClient.invalidateQueries({ queryKey: ['publicWorkshops'] });
       queryClient.invalidateQueries({ queryKey: ['invitation'] });
@@ -124,7 +124,7 @@ export const useUpdateWorkshopMutation = () => {
       const response = await api.put(`/admin/workshops/${id}`, data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminWorkshops'] });
       queryClient.invalidateQueries({ queryKey: ['publicWorkshops'] });
       queryClient.invalidateQueries({ queryKey: ['adminDashboard'] });

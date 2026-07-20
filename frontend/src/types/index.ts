@@ -68,6 +68,7 @@ export interface Registration {
   created_at: string;
   updated_at: string;
   workshop?: Workshop;
+  invitation?: Invitation;
 }
 
 export interface DashboardStats {
@@ -102,4 +103,12 @@ export interface DashboardStats {
     status: string;
     created_at: string;
   }[];
+}
+
+export interface UserMeResponse {
+  id: number;
+  username: string;
+  email: string;
+  is_active: boolean;
+  is_superuser: boolean;
 }

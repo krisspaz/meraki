@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registrationSchema, RegistrationSchemaType } from '../schemas/validation';
 import { Workshop } from '../types';
-import { Loader2, User, Mail, Phone, School, UserCircle2, CheckSquare } from 'lucide-react';
+import { Loader2, User, Mail, Phone, School, UserCircle2 } from 'lucide-react';
 
 interface RegistrationFormProps {
   onSubmit: (data: RegistrationSchemaType) => void;

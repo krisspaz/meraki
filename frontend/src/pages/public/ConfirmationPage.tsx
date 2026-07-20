@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useRegistration } from '../../services/queries';
 import { QRCodeView } from '../../components/QRCodeView';
-import { formatDateLong, formatTime } from '../../utils/formatters';
+import { formatTime } from '../../utils/formatters';
 import { Loader2, CheckCircle2, AlertTriangle, Printer, ArrowLeft, Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
 
 export const ConfirmationPage: React.FC = () => {

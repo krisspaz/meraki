@@ -10,7 +10,7 @@ import {
 import { formatTime } from '../../utils/formatters';
 import { 
   Loader2, Plus, Edit3, Trash2, XCircle, 
-  CheckCircle, ArrowLeftRight, Clock, MapPin, Sparkles, X, Save 
+  CheckCircle, Clock, MapPin, X, Save 
 } from 'lucide-react';
 
 export const Workshops: React.FC = () => {

@@ -8,7 +8,7 @@ import {
 import { formatDateLong } from '../../utils/formatters';
 import { 
   Loader2, Plus, Search, Copy, Check, Power, 
-  PowerOff, Calendar, Users, FileSpreadsheet, X, Save 
+  PowerOff, AlertCircle, Users, FileSpreadsheet, X, Save 
 } from 'lucide-react';
 
 export const Invitations: React.FC = () => {
@@ -152,7 +152,7 @@ export const Invitations: React.FC = () => {
             <span>Generar en Lote</span>
           </button>
           <button
-            onClick={openCreateSingleModal => setIsSingleModalOpen(true)}
+            onClick={() => setIsSingleModalOpen(true)}
             className="btn-meraki flex items-center gap-2 py-2 px-4 text-xs font-bold"
           >
             <Plus className="w-4 h-4" />

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useRegistration, useCancelRegistrationMutation } from '../../services/queries';
 import { Loader2, AlertTriangle, CheckCircle, Home, Send } from 'lucide-react';
 
 export const CancellationPage: React.FC = () => {
   const { code } = useParams<{ code: string }>();
-  const navigate = useNavigate();
   const [reason, setReason] = useState('');
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
