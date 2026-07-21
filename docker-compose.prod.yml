@@ -23,6 +23,7 @@ services:
     container_name: meraki_backend_prod
     command: sh -c "alembic upgrade head && PYTHONPATH=. python app/scripts/seed.py && uvicorn app.main:app --host 0.0.0.0 --port 8000"
     environment:
+      - ENVIRONMENT=${ENVIRONMENT:-production}
       - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-meraki_user}:${POSTGRES_PASSWORD:-meraki_secure_password_2026}@database:5432/${POSTGRES_DB:-meraki_db}
       - DATABASE_SYNC_URL=postgresql+psycopg2://${POSTGRES_USER:-meraki_user}:${POSTGRES_PASSWORD:-meraki_secure_password_2026}@database:5432/${POSTGRES_DB:-meraki_db}
       - JWT_SECRET=${JWT_SECRET:-super_secret_key_for_jwt_token_generation_expo_360_meraki_2026_design}

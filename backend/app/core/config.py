@@ -14,7 +14,8 @@ class Settings(BaseSettings):
     DATABASE_SYNC_URL: str = Field(default="postgresql+psycopg2://meraki_user:meraki_secure_password_2026@database:5432/meraki_db")
 
     # Seguridad JWT
-    JWT_SECRET: str = Field(default="super_secret_key_for_jwt_token_generation_expo_360_meraki_2026_design")
+    # Sin valor por defecto a propósito: la app debe fallar si no se define un secreto real.
+    JWT_SECRET: str
     JWT_ALGORITHM: str = Field(default="HS256")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=30)
     REFRESH_TOKEN_EXPIRE_DAYS: int = Field(default=7)
@@ -22,7 +23,8 @@ class Settings(BaseSettings):
     # Administrador Semilla
     ADMIN_USERNAME: str = Field(default="admin")
     ADMIN_EMAIL: EmailStr = Field(default="expo360.meraki@gmail.com")
-    ADMIN_PASSWORD: str = Field(default="admin_meraki_2026!")
+    # Sin valor por defecto a propósito: debe definirse en el entorno/.env.
+    ADMIN_PASSWORD: str
 
     # Configuración de Actividad Semilla
     EVENT_NAME: str = Field(default="Expo 360 Meraki")
@@ -36,7 +38,15 @@ class Settings(BaseSettings):
     EVENT_REGISTRATION_DEADLINE: str = Field(default="2026-08-15T23:59:59")
     EVENT_STATUS: str = Field(default="active")
 
-    # CORS
+    # Entorno de ejecución: "development" | "production"
+    ENVIRONMENT: str = Field(default="development")
+
+    # CORS. En producción conviene fijar orígenes explícitos vía env
+    # (BACKEND_CORS_ORIGINS='["https://tu-dominio"]') en lugar de "*".
     BACKEND_CORS_ORIGINS: list[str] = ["*"]
+
+    @property
+    def is_production(self) -> bool:
+        return self.ENVIRONMENT.lower() == "production"
 
 settings = Settings()

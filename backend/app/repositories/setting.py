@@ -8,11 +8,6 @@ class SettingRepository(BaseRepository[Setting]):
     def __init__(self, db: AsyncSession):
         super().__init__(Setting, db)
 
-    async def get_value(self, key: str, default: Optional[str] = None) -> Optional[str]:
-        """Obtiene el valor de una configuración por su clave."""
-        setting = await self.get(key)
-        return setting.value if setting else default
-
     async def set_value(self, key: str, value: str, description: Optional[str] = None) -> Setting:
         """Crea o actualiza una clave de configuración."""
         setting = await self.get(key)

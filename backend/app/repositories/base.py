@@ -1,5 +1,4 @@
-from typing import Generic, TypeVar, Type, Any, Optional, Sequence
-from sqlalchemy import select
+from typing import Generic, TypeVar, Type, Any, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.base import Base
 
@@ -13,12 +12,6 @@ class BaseRepository(Generic[ModelType]):
     async def get(self, id: Any) -> Optional[ModelType]:
         """Obtiene un registro por su ID."""
         return await self.db.get(self.model, id)
-
-    async def get_multi(self, skip: int = 0, limit: int = 100) -> Sequence[ModelType]:
-        """Obtiene una lista paginada de registros."""
-        query = select(self.model).offset(skip).limit(limit)
-        result = await self.db.execute(query)
-        return result.scalars().all()
 
     async def create(self, obj_in: Any) -> ModelType:
         """Crea un nuevo registro en la base de datos."""

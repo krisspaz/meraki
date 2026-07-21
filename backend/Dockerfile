@@ -16,6 +16,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el código del backend
 COPY . .
 
+# Ejecutar como usuario sin privilegios (no root) por seguridad
+RUN useradd --create-home --uid 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
 EXPOSE 8000
 
 # El comando por defecto se sobreescribe en docker-compose, pero se especifica uno funcional para producción

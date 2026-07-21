@@ -142,7 +142,7 @@ export const ConfirmationPage: React.FC = () => {
         {/* Botones de acción - Ocultos en Impresión */}
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-center print:hidden">
           <Link
-            to={`/invitacion/${registration.invitation?.token}`}
+            to="/"
             className="flex items-center gap-2 text-slate-200 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl bg-[#1A1638] hover:bg-[#272156] border border-[#DBB8FF]/20 transition-all shadow-sm"
           >
             <ArrowLeft className="w-4 h-4 text-[#AEE6ED]" />

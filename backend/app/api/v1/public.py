@@ -10,7 +10,7 @@ from app.models.workshop import Workshop
 from app.schemas.event import EventResponse
 from app.schemas.workshop import WorkshopResponse
 from app.schemas.invitation import InvitationResponse
-from app.schemas.registration import RegistrationCreate, RegistrationResponse, RegistrationCancel
+from app.schemas.registration import RegistrationCreate, RegistrationPublicResponse, RegistrationCancel
 from app.services.registration_service import RegistrationService
 from app.repositories.invitation import InvitationRepository
 from app.repositories.registration import RegistrationRepository
@@ -83,7 +83,7 @@ async def validate_invitation(token: str, db: AsyncSession = Depends(get_db)):
 
     return invitation
 
-@router.post("/registrations", response_model=RegistrationResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/registrations", response_model=RegistrationPublicResponse, status_code=status.HTTP_201_CREATED)
 async def register_participant(
     reg_in: RegistrationCreate,
     request: Request,
@@ -107,7 +107,7 @@ async def register_participant(
     reg_repo = RegistrationRepository(db)
     return await reg_repo.get_by_code(registration.code)
 
-@router.get("/registrations/{registration_code}", response_model=RegistrationResponse)
+@router.get("/registrations/{registration_code}", response_model=RegistrationPublicResponse)
 async def get_registration_by_code(
     registration_code: str,
     db: AsyncSession = Depends(get_db)
@@ -124,7 +124,7 @@ async def get_registration_by_code(
         )
     return registration
 
-@router.post("/registrations/{registration_code}/cancel", response_model=RegistrationResponse)
+@router.post("/registrations/{registration_code}/cancel", response_model=RegistrationPublicResponse)
 async def cancel_registration_by_code(
     registration_code: str,
     cancel_in: RegistrationCancel,

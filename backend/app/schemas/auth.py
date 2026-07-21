@@ -1,8 +1,4 @@
-from pydantic import BaseModel, EmailStr
-
-class LoginRequest(BaseModel):
-    username: str
-    password: str
+from pydantic import BaseModel, EmailStr, ConfigDict
 
 class TokenResponse(BaseModel):
     access_token: str
@@ -13,10 +9,9 @@ class RefreshRequest(BaseModel):
     refresh_token: str
 
 class UserMeResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     username: str
     email: EmailStr
     is_active: bool
-
-    class Config:
-        from_attributes = True

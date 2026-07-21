@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from datetime import datetime
 from typing import Optional
 from app.schemas.workshop import WorkshopResponse
@@ -28,6 +28,8 @@ class RegistrationUpdateAdmin(BaseModel):
     workshop_id: Optional[int] = None
 
 class RegistrationResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     code: str
     invitation_id: int
@@ -50,5 +52,28 @@ class RegistrationResponse(BaseModel):
     updated_at: datetime
     workshop: Optional[WorkshopResponse] = None
 
-    class Config:
-        from_attributes = True
+
+class RegistrationPublicResponse(BaseModel):
+    """Respuesta para endpoints públicos: excluye datos de rastreo (ip_address, user_agent)
+    que no deben devolverse al participante ni a cualquiera que conozca el código."""
+    model_config = ConfigDict(from_attributes=True)
+    
+    id: int
+    code: str
+    invitation_id: int
+    workshop_id: int
+    full_name: str
+    email: EmailStr
+    phone: str
+    institution: Optional[str] = None
+    age: Optional[int] = None
+    status: str
+    terms_accepted: bool
+    data_treatment_accepted: bool
+    comments: Optional[str] = None
+    confirmed_at: Optional[datetime] = None
+    cancelled_at: Optional[datetime] = None
+    cancellation_reason: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
+    workshop: Optional[WorkshopResponse] = None

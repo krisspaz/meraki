@@ -27,8 +27,14 @@ from app.services.invitation_service import InvitationService
 from app.services.registration_service import RegistrationService
 from app.repositories.registration import RegistrationRepository
 from app.repositories.invitation import InvitationRepository
+from app.repositories.workshop import WorkshopRepository
+from app.repositories.setting import SettingRepository
 
 router = APIRouter()
+
+# Estados de inscripción que ocupan un cupo confirmado del taller.
+# Se usa para mantener sincronizado workshop.confirmed_count en ediciones administrativas.
+OCCUPYING_STATUSES = {"confirmed", "attended"}
 
 # Helper to log audit actions
 async def log_audit(db: AsyncSession, user_id: int, action: str, target_type: str, target_id: str, details: dict = None):
@@ -315,13 +321,42 @@ async def update_registration_admin(
         raise HTTPException(status_code=404, detail="Inscripción no encontrada.")
 
     update_data = reg_in.model_dump(exclude_unset=True)
+    old_status = registration.status
+    new_status = update_data.get("status", old_status)
+
+    # Aplicar cambios de campos simples (el cambio de taller tiene su propio endpoint transaccional)
     for field, value in update_data.items():
-        if field != "workshop_id": # El cambio de taller se maneja por su propio endpoint transaccional
+        if field != "workshop_id":
             setattr(registration, field, value)
+
+    # Mantener sincronizado el contador de cupos del taller si el estado cambia
+    # entre ocupar/no ocupar un cupo confirmado. Sin esto, editar el estado por este
+    # endpoint genérico dejaba confirmed_count desincronizado (cupos fantasma o sobreventa).
+    if "status" in update_data and new_status != old_status:
+        was_occupying = old_status in OCCUPYING_STATUSES
+        now_occupying = new_status in OCCUPYING_STATUSES
+        if was_occupying != now_occupying:
+            work_repo = WorkshopRepository(db)
+            workshop = await work_repo.get_for_update(registration.workshop_id)
+            if workshop:
+                if now_occupying:
+                    workshop.confirmed_count += 1
+                    if registration.confirmed_at is None:
+                        registration.confirmed_at = datetime.now(timezone.utc)
+                else:
+                    workshop.confirmed_count = max(0, workshop.confirmed_count - 1)
+                    if new_status == "cancelled" and registration.cancelled_at is None:
+                        registration.cancelled_at = datetime.now(timezone.utc)
+
+                # Recalcular el estado de ocupación reutilizando la lógica del servicio
+                set_repo = SettingRepository(db)
+                settings_dict = await set_repo.get_all_dict()
+                almost_pct = float(settings_dict.get("almost_full_percentage", "0.80"))
+                await RegistrationService(db)._update_workshop_status(workshop, almost_pct)
 
     await log_audit(db, current_user.id, "update_registration", "registration", str(id), update_data)
     await db.commit()
-    
+
     return await repo.get_by_code(registration.code)
 
 @router.post("/registrations/{id}/change-workshop", response_model=RegistrationResponse)

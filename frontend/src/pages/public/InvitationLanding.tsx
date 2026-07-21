@@ -191,11 +191,13 @@ export const InvitationLanding: React.FC = () => {
             </div>
 
             {/* Alerta de Cupos Limitados */}
-            <div className="p-4.5 bg-[#3939FF]/15 border border-[#3939FF]/30 rounded-2xl flex gap-3.5 items-start shadow-sm">
-              <CheckCircle className="w-5 h-5 text-[#AEE6ED] shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-sm text-white">¡Reserva tu espacio!</h4>
-                <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+            <div className="p-6 md:p-7 bg-[#3939FF]/20 border border-[#3939FF]/40 rounded-3xl flex gap-4 items-start shadow-lg shadow-[#3939FF]/10">
+              <div className="w-10 h-10 rounded-2xl bg-[#3939FF]/30 border border-[#3939FF]/50 flex items-center justify-center shrink-0">
+                <CheckCircle className="w-6 h-6 text-[#AEE6ED]" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-display font-black text-base md:text-lg text-white tracking-wide">¡Reserva tu espacio!</h4>
+                <p className="text-xs md:text-sm text-slate-200 leading-relaxed">
                   Los talleres tienen cupos limitados. Cuando un taller alcance su capacidad máxima, 
                   las inscripciones se cerrarán automáticamente para evitar registros excesivos.
                 </p>

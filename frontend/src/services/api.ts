@@ -12,8 +12,9 @@ if (typeof window !== 'undefined') {
   
   if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
     if (hostname.endsWith('.vercel.app')) {
-      // En Vercel usamos la URL pública de ngrok que apunta al backend
-      API_URL = 'https://vexatiously-dextrocular-esteban.ngrok-free.dev/api';
+      // URL del backend para el deploy en Vercel. Configúrala con VITE_API_URL en Vercel.
+      // El fallback evita romper el túnel actual; conviene eliminarlo cuando VITE_API_URL esté fijo.
+      API_URL = import.meta.env.VITE_API_URL || 'https://vexatiously-dextrocular-esteban.ngrok-free.dev/api';
     } else {
       // En ngrok o redes locales, forzamos /api relativo para usar el proxy de Vite
       API_URL = '/api';

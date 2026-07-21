@@ -1,4 +1,4 @@
-from pydantic import BaseModel, computed_field
+from pydantic import BaseModel, computed_field, ConfigDict
 from datetime import time, datetime
 from typing import Optional
 
@@ -30,6 +30,8 @@ class WorkshopUpdate(BaseModel):
     status: Optional[str] = None
 
 class WorkshopResponse(WorkshopBase):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     confirmed_count: int
     created_at: datetime
@@ -39,6 +41,3 @@ class WorkshopResponse(WorkshopBase):
     @property
     def slots_available(self) -> int:
         return max(0, self.capacity - self.confirmed_count)
-
-    class Config:
-        from_attributes = True

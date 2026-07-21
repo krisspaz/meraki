@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from datetime import date, time, datetime
 from typing import Optional
 
@@ -17,9 +17,6 @@ class EventBase(BaseModel):
     max_participants: int
     status: str # draft, active, closed, finished
 
-class EventCreate(EventBase):
-    pass
-
 class EventUpdate(BaseModel):
     name: Optional[str] = None
     organizer: Optional[str] = None
@@ -36,9 +33,8 @@ class EventUpdate(BaseModel):
     status: Optional[str] = None
 
 class EventResponse(EventBase):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     created_at: datetime
     updated_at: datetime
-
-    class Config:
-        from_attributes = True
